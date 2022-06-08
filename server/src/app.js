@@ -6,6 +6,7 @@ const restaurantModel = require("./models/RestaurantModel");
 const formatRestaurants = require("./formatRestaurants");
 const ReservationModel = require("./models/ReservationModel");
 const formatReservations = require("./formatReservations");
+const validId = require("./utils/validId");
 
 const app = express();
 app.use(cors());
