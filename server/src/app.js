@@ -31,5 +31,5 @@ app.get(
     }
   }
 );
-
+// app.use(errors());
 module.exports = app;
