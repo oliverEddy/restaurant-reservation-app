@@ -62,18 +62,53 @@ describe("app", () => {
         expect(response.body).toEqual(expected);
       });
   });
-  test("POST /reservations should create a new reservation with userId and add it to the data base", async () => {
-    const body = {
-      partySize: 4,
-      date: "2023-11-17T06:30:00.000Z",
-      restaurantName: "Island Grill",
-      userId: "exsapmleUserId",
+  test("GET/restaurants:id", async () => {
+    const expected = {
+      id: "616005cae3c8e880c13dc0b9",
+      name: "Curry Place",
+      description:
+        "Bringing you the spirits of India in the form of best authentic grandma's recipe dishes handcrafted with love by our chefs!",
+      image: "https://i.ibb.co/yftcRcF/indian.jpg",
     };
-    const expectedStatus = 201;
-    await request(app).post("/reservations").send(body).expect(expectedStatus);
+    await request(app)
+      .get("/restaurants/616005cae3c8e880c13dc0b9")
+      .expect(200)
+      .expect((response) => {
+        expect(response).toEqual(expected);
+      });
+  });
+  test("GET/restaurants:invalid-id should return 400 id not found", async () => {
+    const expected = {
+      error: "invalid id provided",
+    };
+    await request(app)
+      .get("restaurants/616005cae3c8e880c13dc0b5")
+      .expect(400)
+      .expect((response) => {
+        expect(response).toEqual(expected);
+      });
+  });
+  test("GET/restaurants:bad-id should return 404 ....... ", async () => {
+    const expected = {
+      error: "restaurant not found",
+    };
+    await request(app).get("restaurants/bad-id").expect(404);
     expect((response) => {
-      expect(response.body).toEqual(expect.objectContaining(body));
-      expect(response.body.id).toBeTruthy();
+      expect(response).toEqual(expected);
     });
+  });
+});
+test("POST /reservations should create a new reservation with userId and add it to the data base", async () => {
+  const body = {
+    partySize: 4,
+    date: "2023-11-17T06:30:00.000Z",
+    restaurantName: "Island Grill",
+    userId: "exsapmleUserId",
+  };
+  const expectedStatus = 201;
+  await request(app).post("/reservations").send(body).expect(expectedStatus);
+  expect((response) => {
+    expect(response.body).toEqual(expect.objectContaining(body));
+    expect(response.body.id).toBeTruthy();
   });
 });

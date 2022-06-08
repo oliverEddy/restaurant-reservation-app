@@ -50,6 +50,23 @@ app.get(
     }
   }
 );
+app.get("/restaurants/:id", async (request, response, next) => {
+  const { id } = request.params;
+
+  if (!validId(id)) {
+    return response.status(400).send({
+      error: "invalid id provided",
+    });
+  }
+  const restaurant = await restaurantModel.findById(id);
+
+  if (restaurant === null) {
+    return response.status(404).send({
+      error: "restaurant not found",
+    });
+  }
+  return response.status(200).send(formatRestaurants(restaurant));
+});
 app.post(
   "/reservations",
   celebrate({
