@@ -1,8 +1,8 @@
 const Joi = require("Joi");
 
 const schema = Joi.object().keys({
-  partySize: Joi.string().required(),
-  date: Joi.date().required(),
+  partySize: Joi.number().required(),
+  date: Joi.string().required(),
   userId: Joi.string().required(),
   restaurantName: Joi.string().required(),
 });

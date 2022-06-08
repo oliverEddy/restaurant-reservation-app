@@ -62,4 +62,18 @@ describe("app", () => {
         expect(response.body).toEqual(expected);
       });
   });
+  test("POST /reservations should create a new reservation with userId and add it to the data base", async () => {
+    const body = {
+      partySize: 4,
+      date: "2023-11-17T06:30:00.000Z",
+      restaurantName: "Island Grill",
+      userId: "exsapmleUserId",
+    };
+    const expectedStatus = 201;
+    await request(app).post("/reservations").send(body).expect(expectedStatus);
+    expect((response) => {
+      expect(response.body).toEqual(expect.objectContaining(body));
+      expect(response.body.id).toBeTruthy();
+    });
+  });
 });
