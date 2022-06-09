@@ -81,7 +81,7 @@ describe("app", () => {
       error: "invalid id provided",
     };
     await request(app)
-      .get("restaurants/616005cae3c8e880c13dc0b5")
+      .get("/restaurants/616005cae3c8e880c13dc0b")
       .expect(400)
       .expect((response) => {
         expect(response.body).toEqual(expected);
@@ -91,7 +91,7 @@ describe("app", () => {
     const expected = {
       error: "restaurant not found",
     };
-    await request(app).get("restaurants/bad-id").expect(404);
+    await request(app).get("/restaurants/616005cae3c8e880c13dc0b7").expect(404);
     expect((response) => {
       expect(response.body).toEqual(expected);
     });
