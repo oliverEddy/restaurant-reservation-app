@@ -61,7 +61,7 @@ describe("app", () => {
         expect(response.body).toEqual(expected);
       });
   });
-  test("GET/restaurants:id", async () => {
+  test("GET/restaurants/:id", async () => {
     const expected = {
       id: "616005cae3c8e880c13dc0b9",
       name: "Curry Place",
@@ -76,7 +76,7 @@ describe("app", () => {
         expect(response.body).toEqual(expected);
       });
   });
-  test("GET/restaurants:invalid-id should return 400 id not found", async () => {
+  test("GET/restaurants/:invalid-id should return 400 id not found", async () => {
     const expected = {
       error: "invalid id provided",
     };
@@ -87,7 +87,7 @@ describe("app", () => {
         expect(response.body).toEqual(expected);
       });
   });
-  test("GET/restaurants:bad-id should return 404 ....... ", async () => {
+  test("GET/restaurants/:bad-id should return 404 ....... ", async () => {
     const expected = {
       error: "restaurant not found",
     };
@@ -108,6 +108,40 @@ describe("app", () => {
     expect((response) => {
       expect(response.body).toEqual(expect.objectContaining(body));
       expect(response.body.id).toBeTruthy();
+    });
+  });
+  test("GET/reservations/:id should return a single reservation by id", async () => {
+    const expected = {
+      id: "507f1f77bcf86cd799439011",
+      partySize: 4,
+      date: "Fri Nov 17 2023 19:30:00 GMT+1300 (New Zealand Daylight Time)",
+      userId: "mock-user-id",
+    };
+    await request(app)
+      .get("/reservations/507f1f77bcf86cd799439011")
+      .expect(200)
+      .expect((response) => {
+        expect(response.body).toEqual(expected);
+      });
+  });
+  test("GET/c/:invalid-id should return 400 id not found", async () => {
+    const expected = {
+      error: "invalid id provided",
+    };
+    await request(app)
+      .get("/reservations/507f1f77bcf86cd79943901")
+      .expect(400)
+      .expect((response) => {
+        expect(response.body).toEqual(expected);
+      });
+  });
+  test("GET/reservations/:bad-id should return 404 ....... ", async () => {
+    const expected = {
+      error: "restaurant not found",
+    };
+    await request(app).get("/reservations/507f1f77bcf86cd79943900").expect(404);
+    expect((response) => {
+      expect(response.body).toEqual(expected);
     });
   });
 });
