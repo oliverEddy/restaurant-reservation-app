@@ -90,6 +90,23 @@ app.post(
     }
   }
 );
+app.get("/reservations/:id", async (request, response, next) => {
+  const { id } = request.params;
+
+  if (!validId(id)) {
+    return response.status(400).send({
+      error: "invalid id provided",
+    });
+  }
+  const reservation = await ReservationModel.findById(id);
+
+  if (reservation === null) {
+    return response.status(404).send({
+      error: "not found",
+    });
+  }
+  return response.status(200).send(formatReservations(reservation));
+});
 
 app.use(errors());
 module.exports = app;

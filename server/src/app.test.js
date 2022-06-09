@@ -114,7 +114,7 @@ describe("app", () => {
     const expected = {
       id: "507f1f77bcf86cd799439011",
       partySize: 4,
-      date: "Fri Nov 17 2023 19:30:00 GMT+1300 (New Zealand Daylight Time)",
+      date: "2023-11-17T06:30:00.000Z",
       userId: "mock-user-id",
     };
     await request(app)
@@ -137,9 +137,11 @@ describe("app", () => {
   });
   test("GET/reservations/:bad-id should return 404 ....... ", async () => {
     const expected = {
-      error: "restaurant not found",
+      error: "not found",
     };
-    await request(app).get("/reservations/507f1f77bcf86cd79943900").expect(404);
+    await request(app)
+      .get("/reservations/507f1f77bcf86cd799439010")
+      .expect(404);
     expect((response) => {
       expect(response.body).toEqual(expected);
     });
