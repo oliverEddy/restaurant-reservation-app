@@ -1,5 +1,4 @@
 const request = require("supertest");
-const { get } = require("./app");
 const app = require("./app");
 
 describe("app", () => {
@@ -74,7 +73,7 @@ describe("app", () => {
       .get("/restaurants/616005cae3c8e880c13dc0b9")
       .expect(200)
       .expect((response) => {
-        expect(response).toEqual(expected);
+        expect(response.body).toEqual(expected);
       });
   });
   test("GET/restaurants:invalid-id should return 400 id not found", async () => {
@@ -85,7 +84,7 @@ describe("app", () => {
       .get("restaurants/616005cae3c8e880c13dc0b5")
       .expect(400)
       .expect((response) => {
-        expect(response).toEqual(expected);
+        expect(response.body).toEqual(expected);
       });
   });
   test("GET/restaurants:bad-id should return 404 ....... ", async () => {
@@ -94,21 +93,21 @@ describe("app", () => {
     };
     await request(app).get("restaurants/bad-id").expect(404);
     expect((response) => {
-      expect(response).toEqual(expected);
+      expect(response.body).toEqual(expected);
     });
   });
-});
-test("POST /reservations should create a new reservation with userId and add it to the data base", async () => {
-  const body = {
-    partySize: 4,
-    date: "2023-11-17T06:30:00.000Z",
-    restaurantName: "Island Grill",
-    userId: "exsapmleUserId",
-  };
-  const expectedStatus = 201;
-  await request(app).post("/reservations").send(body).expect(expectedStatus);
-  expect((response) => {
-    expect(response.body).toEqual(expect.objectContaining(body));
-    expect(response.body.id).toBeTruthy();
+  test("POST /reservations should create a new reservation with userId and add it to the data base", async () => {
+    const body = {
+      partySize: 4,
+      date: "2023-11-17T06:30:00.000Z",
+      restaurantName: "Island Grill",
+      userId: "exsapmleUserId",
+    };
+    const expectedStatus = 201;
+    await request(app).post("/reservations").send(body).expect(expectedStatus);
+    expect((response) => {
+      expect(response.body).toEqual(expect.objectContaining(body));
+      expect(response.body.id).toBeTruthy();
+    });
   });
 });
