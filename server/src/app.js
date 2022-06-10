@@ -73,14 +73,17 @@ app.post(
     [Segments.BODY]: Joi.object().keys({
       partySize: Joi.number().required(),
       date: Joi.string().required(),
-      userId: Joi.string().required(),
       restaurantName: Joi.string().required(),
     }),
   }),
   async (request, response, next) => {
     try {
-      const { body } = request;
-      const reservation = new ReservationModel(body);
+      const { body, auth } = request;
+      const reservationBody = {
+        userId: auth.payload.sub,
+        ...body,
+      };
+      const reservation = new ReservationModel(reservationBody);
       await reservation.save();
       return response.status(201).send(formatReservations(reservation));
     } catch (error) {
