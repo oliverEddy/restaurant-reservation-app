@@ -4,7 +4,7 @@ const formatReservations = (reservation) => {
     partySize: reservation.partySize,
     date: reservation.date,
     userId: reservation.userId,
-    restaurantName: reservation.name,
+    restaurantName: reservation.restaurantName,
   };
 };
 module.exports = formatReservations;

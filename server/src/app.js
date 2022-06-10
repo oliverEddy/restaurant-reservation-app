@@ -1,6 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const { celebrate, Joi, errors, Segments } = require("celebrate");
+const { auth } = require("express-oauth2-jwt-bearer");
+const checkJwt = auth({
+  audience: "https://reservationizr.com",
+  issuerBaseURL: `https://dev-8sarvpl3.us.auth0.com/`,
+});
 
 const restaurantModel = require("./models/RestaurantModel");
 const formatRestaurants = require("./formatRestaurants");
@@ -14,13 +19,7 @@ app.use(express.json());
 
 app.get(
   "/restaurants",
-  /* celebrate({
-    [Segments.BODY]: Joi.object().keys({
-      name: Joi.string().required(),
-      description: Joi.string().required(),
-      image: Joi.string().required(),
-    }), 
-  }), */
+
   async (request, response, next) => {
     try {
       const restaurants = await restaurantModel.find({});
@@ -69,6 +68,7 @@ app.get("/restaurants/:id", async (request, response, next) => {
 });
 app.post(
   "/reservations",
+  checkJwt,
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       partySize: Joi.number().required(),
