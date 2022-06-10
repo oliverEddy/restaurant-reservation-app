@@ -38,20 +38,23 @@ describe("app", () => {
       {
         id: "507f1f77bcf86cd799439011",
         partySize: 4,
-        date: "2023-11-17T06:30:00.000Z",
+        date: "Fri Nov 17 2023 19:30:00 GMT+1300 (New Zealand Daylight Time)",
         userId: "mock-user-id",
+        restaurantName: "Island Grill",
       },
       {
         id: "614abf0a93e8e80ace792ac6",
         partySize: 2,
-        date: "2023-12-03T07:00:00.000Z",
+        date: "Sun Dec 03 2023 20:00:00 GMT+1300 (New Zealand Daylight Time)",
         userId: "mock-user-id",
+        restaurantName: "Green Curry",
       },
       {
         id: "61679189b54f48aa6599a7fd",
         partySize: 2,
-        date: "2023-12-03T07:00:00.000Z",
+        date: "Sun Dec 03 2023 20:00:00 GMT+1300 (New Zealand Daylight Time)",
         userId: "another-user-id",
+        restaurantName: "Green Curry",
       },
     ];
     await request(app)
@@ -101,7 +104,6 @@ describe("app", () => {
       partySize: 4,
       date: "2023-11-17T06:30:00.000Z",
       restaurantName: "Island Grill",
-      userId: "exsapmleUserId",
     };
     const expectedStatus = 201;
     await request(app).post("/reservations").send(body).expect(expectedStatus);
@@ -114,8 +116,9 @@ describe("app", () => {
     const expected = {
       id: "507f1f77bcf86cd799439011",
       partySize: 4,
-      date: "2023-11-17T06:30:00.000Z",
+      date: "Fri Nov 17 2023 19:30:00 GMT+1300 (New Zealand Daylight Time)",
       userId: "mock-user-id",
+      restaurantName: "Island Grill",
     };
     await request(app)
       .get("/reservations/507f1f77bcf86cd799439011")
@@ -147,3 +150,4 @@ describe("app", () => {
     });
   });
 });
+// tests for 401 and 403's

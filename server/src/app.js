@@ -33,22 +33,18 @@ app.get(
     }
   }
 );
-app.get(
-  "/reservations",
-
-  async (request, response, next) => {
-    try {
-      const reservations = await ReservationModel.find({});
-      const formattedReservations = reservations.map((reservation) => {
-        return formatReservations(reservation);
-      });
-      return response.status(200).send(formattedReservations);
-    } catch (error) {
-      error.status = 400;
-      next(error);
-    }
+app.get("/reservations", checkJwt, async (request, response, next) => {
+  try {
+    const reservations = await ReservationModel.find({});
+    const formattedReservations = reservations.map((reservation) => {
+      return formatReservations(reservation);
+    });
+    return response.status(200).send(formattedReservations);
+  } catch (error) {
+    error.status = 400;
+    next(error);
   }
-);
+});
 app.get("/restaurants/:id", async (request, response, next) => {
   const { id } = request.params;
 
@@ -93,7 +89,7 @@ app.post(
     }
   }
 );
-app.get("/reservations/:id", async (request, response, next) => {
+app.get("/reservations/:id", checkJwt, async (request, response, next) => {
   const { id } = request.params;
 
   if (!validId(id)) {
