@@ -53,7 +53,7 @@ const CreateReservation = () => {
     <>
       <div>
         <form onSubmit={handelSubmit}>
-          <label htmlFor="partySize">partySize</label>
+          <label htmlFor="partySize">Number of guests</label>
           <input
             id="partySize"
             type="text"
@@ -63,15 +63,14 @@ const CreateReservation = () => {
               setPartySize(value);
             }}
           />
-          <label htmlFor="date">date</label>
-          <input
-            id="date"
-            type="text"
-            value={date}
-            onChange={(event) => {
-              const value = event.target.value;
-              setDate(value);
-            }}
+
+          <label htmlFor="date">Date</label>
+          <DatePicker
+            selected={date}
+            showTimeSelect
+            onChange={(date) => setDate(date)}
+            dateFormat="Pp"
+            required
           />
           <label htmlFor="restaurantName">restaurantName</label>
           <input
