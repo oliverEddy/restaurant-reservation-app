@@ -26,7 +26,7 @@ const CreateReservation = () => {
     };
     const accessToken = await getAccessTokenSilently();
     try {
-      const response = await fetch(`https://localhost:5001/reservations.....`, {
+      const response = await fetch(`https://localhost:5001/reservations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const CreateReservation = () => {
         setErrorStatus(response.status);
       } else {
         setIsLoading(false);
-        navigate("/reservations...");
+        navigate("/reservations");
       }
     } catch (error) {
       setIsError(true);
