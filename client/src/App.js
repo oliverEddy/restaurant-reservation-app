@@ -7,6 +7,7 @@ import Reservation from "./components/Reservation";
 import ReservationList from "./components/ReservationList";
 import RestaurantList from "./components/RestaurantList";
 import Restaurant from "./components/Restaurant";
+import CreateReservation from "./components/CreateReservation";
 
 const App = () => {
   const { isLoading } = useAuth0();
@@ -20,9 +21,14 @@ const App = () => {
       <div className="container">
         <Routes>
           <Route path="/restaurants/:id" element={<Restaurant />} />
-          <Route path="/reservations/:id" element={<Reservation />} />
-          <Route path="/reservations" element={<ReservationList />} />
+          <Route path="/reservations/:id" element={<ProtectedRoute />}>
+            <Route path="/reservations/:id" element={<Reservation />} />
+          </Route>
+          <Route path="/reservations" element={<ProtectedRoute />}>
+            <Route path="/reservations" element={<ReservationList />} />
+          </Route>
           <Route path="/" element={<RestaurantList />} />
+          <Route path="/reservations" element={<CreateReservation />} />
         </Routes>
       </div>
     </>
@@ -30,3 +36,8 @@ const App = () => {
 };
 
 export default App;
+/* <Route path="/reservations" element={<ProtectedRoute />}>
+            <Route path="/reservations/:id" element={<Reservation />} />
+             <Route path="/reservations" element={<ReservationList />} />
+              <Route path="/reservations" element={<CreateReservation />} />
+          </Route> */
