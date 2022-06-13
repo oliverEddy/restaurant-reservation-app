@@ -9,8 +9,3 @@ const reservationsSchema = new Schema({
 });
 const ReservationModel = mongoose.model("Reservation", reservationsSchema);
 module.exports = ReservationModel;
-/* ({
-  partySize: { type: Number, min: 0, required: true },
-  date: { type: String, default: Date.now, required: true },
-  restaurantName: { type: String, required: true },
-}); */

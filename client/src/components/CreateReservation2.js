@@ -5,10 +5,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "react-datepicker/dist/react-datepicker.css";
 import "./CreateReservation.css";
 
-const CreateReservation = ({ restaurantName }) => {
+const CreateReservation = () => {
   const [partySize, setPartySize] = useState("");
   const [date, setDate] = useState("");
   // const [restaurantName, setRestaurantName] = useState("");
+
   const [published, setPublished] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -21,11 +22,10 @@ const CreateReservation = ({ restaurantName }) => {
     const body = {
       partySize,
       date,
-      restaurantName,
     };
     const accessToken = await getAccessTokenSilently();
     try {
-      const response = await fetch(`http://localhost:5001/reservations`, {
+      const response = await fetch(`https://localhost:5001/reservation`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
