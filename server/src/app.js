@@ -68,7 +68,7 @@ app.post(
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       partySize: Joi.number().required(),
-      date: Joi.string().required(),
+      date: Joi.date().required(),
       restaurantName: Joi.string().required(),
     }),
   }),

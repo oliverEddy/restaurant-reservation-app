@@ -63,7 +63,6 @@ const CreateReservation = () => {
               setPartySize(value);
             }}
           />
-
           <label htmlFor="date">Date</label>
           <DatePicker
             selected={date}
@@ -82,6 +81,7 @@ const CreateReservation = () => {
               setRestaurantName(value);
             }}
           />
+          {/*
           <label htmlFor="publish">Publish?</label>
           <input
             id="publish"
@@ -92,7 +92,7 @@ const CreateReservation = () => {
               setPublished(value);
               console.log(published);
             }}
-          />
+          /> */}
           <button disabled={isLoading}>Submit</button>
         </form>
       </div>
