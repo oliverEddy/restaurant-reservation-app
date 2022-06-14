@@ -1,13 +1,67 @@
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { formatDate } from "../utils/formatDate";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 import "./Reservation.css";
 
 const Reservation = () => {
   const { id } = useParams();
+  const [reservation, setReservation] = useState({});
+  const [isNotFound, setIsNotFound] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const { getAccessTokenSilently } = useAuth0();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const accessToken = await getAccessTokenSilently();
+      const response = await fetch(`http://localhost:5001/reservations/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      if (response.ok === false) {
+        setIsNotFound(true);
+        return;
+      }
+
+      const data = await response.json();
+      setReservation(data);
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, [id]);
+
+  if (isNotFound) {
+    return (
+      <>
+        <p className="error">Sorry! We can't find that reservation</p>
+      </>
+    );
+  }
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
       <h1>Reservation</h1>
+      <div>
+        <ul className="">
+          <li key={reservation.id}>
+            <div className="">
+              <div className="">{reservation.name}</div>
+              <div className="">{formatDate(reservation.date)}</div>
+              <div className="">{reservation.restaurantName} </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <Link to="/">Back</Link>
     </>
   );
 };

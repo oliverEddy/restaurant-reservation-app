@@ -29,7 +29,6 @@ const ReservationList = () => {
         <h1>Upcoming reservations</h1>
 
         <ul className="">
-          <p>hahda</p>
           {reservations.map((reservation) => {
             return (
               <li key={reservation.id}>
@@ -37,7 +36,7 @@ const ReservationList = () => {
                   <div className="">{reservation.name}</div>
                   <div className="">{formatDate(reservation.date)}</div>
                   <Link to={`/reservations/${reservation.id}`}>
-                    <p className="details">Reserve now→</p>
+                    <p className="details">View details→</p>
                   </Link>
                 </div>
               </li>
