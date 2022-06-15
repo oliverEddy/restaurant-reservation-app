@@ -37,20 +37,16 @@ const Restaurant = () => {
 
   return (
     <>
-      <div className="restaurantContainer">
-        <li key={restaurant.id}>
-          <div className="restaurantBody">
-            <img
-              className="restaurantImage"
-              alt="promo-img"
-              src={restaurant.image}
-            />
-            <div className="restaurantName">{restaurant.name}</div>
-            <div className="restaurantDescription">
-              {restaurant.description}
-            </div>
-          </div>
-        </li>
+      <div className="restaurantContainer" key={restaurant.id}>
+        <div className="restaurantBody">
+          <img
+            className="restaurantImage"
+            alt="promo-img"
+            src={restaurant.image}
+          />
+          <div className="restaurantName">{restaurant.name}</div>
+          <div className="restaurantDescription">{restaurant.description}</div>
+        </div>
         <CreateReservation
           className="CreateReservation"
           restaurantName={restaurant.name}

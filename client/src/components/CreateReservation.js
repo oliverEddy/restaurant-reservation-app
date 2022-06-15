@@ -51,10 +51,13 @@ const CreateReservation = ({ restaurantName }) => {
 
   return (
     <>
-      <div>
-        <form onSubmit={handelSubmit}>
-          <label htmlFor="partySize">Number of guests</label>
+      <div className="">
+        <form className="formContainer" onSubmit={handelSubmit}>
+          <label className="labelForPartySize" htmlFor="partySize">
+            Number of guests
+          </label>
           <input
+            className="inputForPartySize"
             id="partySize"
             type="text"
             value={partySize}
@@ -63,8 +66,11 @@ const CreateReservation = ({ restaurantName }) => {
               setPartySize(value);
             }}
           />
-          <label htmlFor="date">Date</label>
+          <label className="labelForDatePicker" htmlFor="date">
+            Date
+          </label>
           <DatePicker
+            className="inputForDatePicker"
             selected={date}
             showTimeSelect
             onChange={(date) => setDate(date)}
@@ -72,7 +78,9 @@ const CreateReservation = ({ restaurantName }) => {
             required
           />
 
-          <button disabled={isLoading}>Submit</button>
+          <button className="submitButton" disabled={isLoading}>
+            Submit
+          </button>
         </form>
       </div>
     </>

@@ -51,7 +51,7 @@ app.post(
   checkJwt,
   celebrate({
     [Segments.BODY]: Joi.object().keys({
-      partySize: Joi.number().required(),
+      partySize: Joi.number().min(0).required(),
       date: Joi.date().required(),
       restaurantName: Joi.string().required(),
     }),
