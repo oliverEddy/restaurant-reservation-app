@@ -44,8 +44,8 @@ const Restaurant = () => {
             alt="promo-img"
             src={restaurant.image}
           />
-          <div className="restaurantName">{restaurant.name}</div>
-          <div className="restaurantDescription">{restaurant.description}</div>
+          <h1 className="restaurantName">{restaurant.name}</h1>
+          <p className="restaurantDescription">{restaurant.description}</p>
         </div>
         <CreateReservation
           className="CreateReservation"

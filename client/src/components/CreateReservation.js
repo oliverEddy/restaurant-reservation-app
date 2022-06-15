@@ -51,6 +51,7 @@ const CreateReservation = ({ restaurantName }) => {
 
   return (
     <>
+      <h2>Reserve {restaurantName}</h2>
       <div className="">
         <form className="formContainer" onSubmit={handelSubmit}>
           <label className="labelForPartySize" htmlFor="partySize">

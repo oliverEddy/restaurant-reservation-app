@@ -18,6 +18,8 @@
 }
 .details {
   margin-top: 0.3rem;
+  color: red;
+  text-decoration-color: red;
 }
 
 @media (min-width: 50rem) {

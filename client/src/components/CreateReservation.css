@@ -5,6 +5,7 @@
 }
 
 .inputForPartySize {
+  padding: 0.5rem;
   width: 100%;
 }
 
@@ -12,8 +13,17 @@
 }
 
 .inputForDatePicker {
+  padding: 0.5rem;
   width: 100%;
 }
 .submitButton {
-  padding: ;
+  background-color: red;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  padding: 0.85rem 1.6rem;
+  text-align: center;
+  font-size: 1rem;
+  display: inline-block;
+  margin-top: 1rem;
 }

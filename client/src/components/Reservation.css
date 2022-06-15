@@ -17,4 +17,9 @@
 }
 .backButton {
   justify-self: start;
+  text-decoration: none;
+  color: black;
+  background-color: #d3d3d3;
+  border-radius: 0.5rem;
+  padding: 0.8rem;
 }

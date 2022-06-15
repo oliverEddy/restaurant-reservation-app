@@ -61,7 +61,7 @@ const Reservation = () => {
       </div>
 
       <Link className="backButton" to="/">
-        Back
+        ←Back to reservation
       </Link>
     </>
   );
