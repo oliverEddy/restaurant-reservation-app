@@ -1,0 +1,20 @@
+.reservation {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px dashed #ccc;
+}
+.restaurantName {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+.date {
+  color: #808080;
+  margin: 1.5rem;
+  margin-left: 0;
+}
+.partySize {
+  font-weight: bold;
+}
+.backButton {
+  justify-self: start;
+}

@@ -35,7 +35,11 @@ app.get(
 );
 app.get("/reservations", checkJwt, async (request, response, next) => {
   try {
-    const reservations = await ReservationModel.find({});
+    const { auth } = request;
+
+    const reservations = await ReservationModel.find({
+      userId: auth.payload.sub,
+    });
     const formattedReservations = reservations.map((reservation) => {
       return formatReservations(reservation);
     });

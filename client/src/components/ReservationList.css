@@ -1,0 +1,43 @@
+.Header {
+  margin-bottom: 3rem;
+}
+.reservationBody {
+  border-bottom: 1px dashed #ccc;
+}
+.reservations {
+  list-style-type: none;
+  padding: 0;
+}
+.name {
+  font-weight: bold;
+  margin-top: 0.7rem;
+}
+.date {
+  color: #808080;
+  margin-top: 0.3rem;
+}
+.details {
+  margin-top: 0.3rem;
+}
+
+@media (min-width: 50rem) {
+  .reservationBody {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    width: 100%;
+    margin: 1rem;
+  }
+  .name {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .date {
+    justify-self: center;
+    margin-top: 1rem;
+  }
+  .details {
+    margin-left: 1.15rem;
+    margin-top: 1rem;
+  }
+}

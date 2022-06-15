@@ -50,18 +50,19 @@ const Reservation = () => {
   return (
     <>
       <h1>Reservation</h1>
-      <div>
-        <ul className="">
-          <li key={reservation.id}>
-            <div className="">
-              <div className="">{reservation.name}</div>
-              <div className="">{formatDate(reservation.date)}</div>
-              <div className="">{reservation.restaurantName} </div>
-            </div>
-          </li>
-        </ul>
+
+      <div className="reservation">
+        <h2 className="restaurantName">{reservation.restaurantName} </h2>
+        <div className="date">{formatDate(reservation.date)}</div>
+        <div className="">
+          <span className="partySize">Party size: </span>
+          {reservation.partySize}
+        </div>
       </div>
-      <Link to="/">Back</Link>
+
+      <Link className="backButton" to="/">
+        Back
+      </Link>
     </>
   );
 };

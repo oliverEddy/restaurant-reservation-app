@@ -37,18 +37,25 @@ const Restaurant = () => {
 
   return (
     <>
-      <li key={restaurant.id}>
-        <div className="restaurantBody">
-          <img
-            className="restaurantImage"
-            alt="promo-img"
-            src={restaurant.image}
-          />
-          <div className="restaurantName">{restaurant.name}</div>
-          <div className="restaurantDescription">{restaurant.description}</div>
-        </div>
-      </li>
-      <CreateReservation restaurantName={restaurant.name} />
+      <div className="restaurantContainer">
+        <li key={restaurant.id}>
+          <div className="restaurantBody">
+            <img
+              className="restaurantImage"
+              alt="promo-img"
+              src={restaurant.image}
+            />
+            <div className="restaurantName">{restaurant.name}</div>
+            <div className="restaurantDescription">
+              {restaurant.description}
+            </div>
+          </div>
+        </li>
+        <CreateReservation
+          className="CreateReservation"
+          restaurantName={restaurant.name}
+        />
+      </div>
     </>
   );
 };

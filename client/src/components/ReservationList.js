@@ -25,19 +25,21 @@ const ReservationList = () => {
   }, []);
   return (
     <>
-      <div className="">
-        <h1>Upcoming reservations</h1>
+      <div className="reservationContainer">
+        <h1 className="Header">Upcoming reservations</h1>
 
-        <ul className="">
+        <ul className="reservations">
           {reservations.map((reservation) => {
             return (
               <li key={reservation.id}>
-                <div className="">
-                  <div className="">{reservation.name}</div>
-                  <div className="">{formatDate(reservation.date)}</div>
-                  <Link to={`/reservations/${reservation.id}`}>
-                    <p className="details">View details→</p>
-                  </Link>
+                <div className="reservationBody">
+                  <div className="name">{reservation.restaurantName}</div>
+                  <div className="date">{formatDate(reservation.date)}</div>
+                  <div className="link">
+                    <Link to={`/reservations/${reservation.id}`}>
+                      <p className="details">View details→</p>
+                    </Link>
+                  </div>
                 </div>
               </li>
             );
