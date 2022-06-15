@@ -89,10 +89,11 @@ app.get("/reservations", checkJwt, async (request, response, next) => {
     next(error);
   }
 });
+
 app.get("/reservations/:id", checkJwt, async (request, response, next) => {
   const { id } = request.params;
-  const { auth } = request;
-  const userId = auth.payload.sub;
+  // const { auth } = request;
+  // const userId = auth.payload.sub;
 
   if (!validId(id)) {
     return response.status(400).send({
@@ -106,14 +107,38 @@ app.get("/reservations/:id", checkJwt, async (request, response, next) => {
       error: "not found",
     });
   }
-  if (reservation.userId === userId) {
-    return response.status(200).send(formatReservations(reservation));
-  } /* else {
-    return response.status(403).send({
-      error: "user does not have permission to access this reservation",
-    });
-  } */
+  // if (reservation.userId === userId) {
+  return response.status(200).send(formatReservations(reservation));
+  // } else {
+  //   return response.status(403).send({
+  //   error: "user does not have permission to access this reservation",
+  //  });
+  // }
 });
+
+/* app.get("/reservations/:id", checkJwt, async (request, response) => {
+  const { id } = request.params;
+  const { auth } = request;
+  const userId = auth.payload.sub;
+
+  if (validId) {
+    const reservation = await ReservationModel.findById(id);
+
+    if (reservation) {
+      if (reservation.userId === userId) {
+        return response.send(formatReservations(reservation));
+      } else {
+        return response.status(403).send({
+          error: "user does not have permission to access this reservation",
+        });
+      }
+    } else {
+      return response.status(404).send({ error: "not found" });
+    }
+  } else {
+    return response.status(400).send({ error: "invalid id provided" });
+  }
+}); */
 
 app.use(errors());
 module.exports = app;

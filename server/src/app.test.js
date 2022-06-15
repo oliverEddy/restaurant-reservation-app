@@ -84,25 +84,18 @@ describe("app", () => {
   test("GET /reservations should return all reservation made by the user trying to access them", async () => {
     const expected = [
       {
+        date: "2023-11-17T06:30:00.000Z",
         id: "507f1f77bcf86cd799439011",
         partySize: 4,
-        date: "Fri Nov 17 2023 19:30:00 GMT+1300 (New Zealand Daylight Time)",
-        userId: "mock-user-id",
         restaurantName: "Island Grill",
+        userId: "mock-user-id",
       },
       {
+        date: "2023-12-03T07:00:00.000Z",
         id: "614abf0a93e8e80ace792ac6",
         partySize: 2,
-        date: "Sun Dec 03 2023 20:00:00 GMT+1300 (New Zealand Daylight Time)",
+        restaurantName: "Green Curry",
         userId: "mock-user-id",
-        restaurantName: "Green Curry",
-      },
-      {
-        id: "61679189b54f48aa6599a7fd",
-        partySize: 2,
-        date: "Sun Dec 03 2023 20:00:00 GMT+1300 (New Zealand Daylight Time)",
-        userId: "another-user-id",
-        restaurantName: "Green Curry",
       },
     ];
     await request(app)
@@ -116,7 +109,7 @@ describe("app", () => {
     const expected = {
       id: "507f1f77bcf86cd799439011",
       partySize: 4,
-      date: "Fri Nov 17 2023 19:30:00 GMT+1300 (New Zealand Daylight Time)",
+      date: "2023-11-17T06:30:00.000Z",
       userId: "mock-user-id",
       restaurantName: "Island Grill",
     };

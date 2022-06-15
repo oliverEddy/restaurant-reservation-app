@@ -27,6 +27,10 @@ const ReservationList = () => {
     <>
       <div className="reservationContainer">
         <h1 className="Header">Upcoming reservations</h1>
+        <p>You don't have any reservations.</p>
+        <Link to={"/"}>
+          <p className="details">View the restaurants</p>
+        </Link>
 
         <ul className="reservations">
           {reservations.map((reservation) => {
