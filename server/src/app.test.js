@@ -33,7 +33,55 @@ describe("app", () => {
         expect(response.body).toEqual(expected);
       });
   });
-  test("GET /reservations should return all reservations", async () => {
+  test("GET/restaurants/:id should return a single restaurant with matching Id", async () => {
+    const expected = {
+      id: "616005cae3c8e880c13dc0b9",
+      name: "Curry Place",
+      description:
+        "Bringing you the spirits of India in the form of best authentic grandma's recipe dishes handcrafted with love by our chefs!",
+      image: "https://i.ibb.co/yftcRcF/indian.jpg",
+    };
+    await request(app)
+      .get("/restaurants/616005cae3c8e880c13dc0b9")
+      .expect(200)
+      .expect((response) => {
+        expect(response.body).toEqual(expected);
+      });
+  });
+  test("GET/restaurants/:invalid-id should return a status code of 400 invalid id provided", async () => {
+    const expected = {
+      error: "invalid id provided",
+    };
+    await request(app)
+      .get("/restaurants/616005cae3c8e880c13dc0b")
+      .expect(400)
+      .expect((response) => {
+        expect(response.body).toEqual(expected);
+      });
+  });
+  test("GET/restaurants/:bad-id should return a status code of 404 restaurant not found", async () => {
+    const expected = {
+      error: "restaurant not found",
+    };
+    await request(app).get("/restaurants/616005cae3c8e880c13dc0b7").expect(404);
+    expect((response) => {
+      expect(response.body).toEqual(expected);
+    });
+  });
+  test("POST /reservations should create a new reservation with userId and add it to the data base", async () => {
+    const body = {
+      partySize: 4,
+      date: "2023-11-17T06:30:00.000Z",
+      restaurantName: "Island Grill",
+    };
+    const expectedStatus = 201;
+    await request(app).post("/reservations").send(body).expect(expectedStatus);
+    expect((response) => {
+      expect(response.body).toEqual(expect.objectContaining(body));
+      expect(response.body.id).toBeTruthy();
+    });
+  });
+  test("GET /reservations should return all reservation made by the user trying to access them", async () => {
     const expected = [
       {
         id: "507f1f77bcf86cd799439011",
@@ -64,54 +112,6 @@ describe("app", () => {
         expect(response.body).toEqual(expected);
       });
   });
-  test("GET/restaurants/:id", async () => {
-    const expected = {
-      id: "616005cae3c8e880c13dc0b9",
-      name: "Curry Place",
-      description:
-        "Bringing you the spirits of India in the form of best authentic grandma's recipe dishes handcrafted with love by our chefs!",
-      image: "https://i.ibb.co/yftcRcF/indian.jpg",
-    };
-    await request(app)
-      .get("/restaurants/616005cae3c8e880c13dc0b9")
-      .expect(200)
-      .expect((response) => {
-        expect(response.body).toEqual(expected);
-      });
-  });
-  test("GET/restaurants/:invalid-id should return 400 id not found", async () => {
-    const expected = {
-      error: "invalid id provided",
-    };
-    await request(app)
-      .get("/restaurants/616005cae3c8e880c13dc0b")
-      .expect(400)
-      .expect((response) => {
-        expect(response.body).toEqual(expected);
-      });
-  });
-  test("GET/restaurants/:bad-id should return 404 ....... ", async () => {
-    const expected = {
-      error: "restaurant not found",
-    };
-    await request(app).get("/restaurants/616005cae3c8e880c13dc0b7").expect(404);
-    expect((response) => {
-      expect(response.body).toEqual(expected);
-    });
-  });
-  test("POST /reservations should create a new reservation with userId and add it to the data base", async () => {
-    const body = {
-      partySize: 4,
-      date: "2023-11-17T06:30:00.000Z",
-      restaurantName: "Island Grill",
-    };
-    const expectedStatus = 201;
-    await request(app).post("/reservations").send(body).expect(expectedStatus);
-    expect((response) => {
-      expect(response.body).toEqual(expect.objectContaining(body));
-      expect(response.body.id).toBeTruthy();
-    });
-  });
   test("GET/reservations/:id should return a single reservation by id", async () => {
     const expected = {
       id: "507f1f77bcf86cd799439011",
@@ -127,7 +127,7 @@ describe("app", () => {
         expect(response.body).toEqual(expected);
       });
   });
-  test("GET/c/:invalid-id should return 400 id not found", async () => {
+  test("GET/reservations/:invalid-id should return a status code of 400 invalid id provided", async () => {
     const expected = {
       error: "invalid id provided",
     };
@@ -138,7 +138,18 @@ describe("app", () => {
         expect(response.body).toEqual(expected);
       });
   });
-  test("GET/reservations/:bad-id should return 404 ....... ", async () => {
+  /* test("GET/reservation/:id should forbidden access when trying to get another users reservation and return a status of 403", async () => {
+    const expected = {
+      error: "user does not have permission to access this reservation",
+    };
+    await request(app)
+      .get("/reservations/62a7d8bf95be9ca5faedcfd5")
+      .expect(403);
+    expect((response) => {
+      expect(response.body).toEqual(expected);
+    });
+  }); */
+  test("GET/reservations/:bad-id should return a status code of 404 reservation not found", async () => {
     const expected = {
       error: "not found",
     };
@@ -150,4 +161,3 @@ describe("app", () => {
     });
   });
 });
-// tests for 401 and 403's

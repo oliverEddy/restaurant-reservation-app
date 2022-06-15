@@ -1,6 +1,5 @@
 import "./RestaurantList.css";
 import { Link } from "react-router-dom";
-// import formatDate from "../utils/formatDate";
 import React, { useState, useEffect } from "react";
 
 const RestaurantList = () => {
@@ -31,8 +30,8 @@ const RestaurantList = () => {
                   <div className="restaurantDescription">
                     {restaurant.description}
                   </div>
-                  <Link to={`/restaurants/${restaurant.id}`}>
-                    <p className="details">Reserve now→</p>
+                  <Link className="link" to={`/restaurants/${restaurant.id}`}>
+                    <p className="reserveNow">Reserve now→</p>
                   </Link>
                 </div>
               </li>

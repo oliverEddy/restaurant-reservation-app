@@ -17,33 +17,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get(
-  "/restaurants",
-
-  async (request, response, next) => {
-    try {
-      const restaurants = await restaurantModel.find({});
-      const formattedRestaurants = restaurants.map((restaurant) => {
-        return formatRestaurants(restaurant);
-      });
-      return response.status(200).send(formattedRestaurants);
-    } catch (error) {
-      error.status = 400;
-      next(error);
-    }
-  }
-);
-app.get("/reservations", checkJwt, async (request, response, next) => {
+app.get("/restaurants", async (request, response, next) => {
   try {
-    const { auth } = request;
-
-    const reservations = await ReservationModel.find({
-      userId: auth.payload.sub,
+    const restaurants = await restaurantModel.find({});
+    const formattedRestaurants = restaurants.map((restaurant) => {
+      return formatRestaurants(restaurant);
     });
-    const formattedReservations = reservations.map((reservation) => {
-      return formatReservations(reservation);
-    });
-    return response.status(200).send(formattedReservations);
+    return response.status(200).send(formattedRestaurants);
   } catch (error) {
     error.status = 400;
     next(error);
@@ -93,8 +73,26 @@ app.post(
     }
   }
 );
+app.get("/reservations", checkJwt, async (request, response, next) => {
+  try {
+    const { auth } = request;
+
+    const reservations = await ReservationModel.find({
+      userId: auth.payload.sub,
+    });
+    const formattedReservations = reservations.map((reservation) => {
+      return formatReservations(reservation);
+    });
+    return response.status(200).send(formattedReservations);
+  } catch (error) {
+    error.status = 400;
+    next(error);
+  }
+});
 app.get("/reservations/:id", checkJwt, async (request, response, next) => {
   const { id } = request.params;
+  const { auth } = request;
+  const userId = auth.payload.sub;
 
   if (!validId(id)) {
     return response.status(400).send({
@@ -108,7 +106,13 @@ app.get("/reservations/:id", checkJwt, async (request, response, next) => {
       error: "not found",
     });
   }
-  return response.status(200).send(formatReservations(reservation));
+  if (reservation.userId === userId) {
+    return response.status(200).send(formatReservations(reservation));
+  } /* else {
+    return response.status(403).send({
+      error: "user does not have permission to access this reservation",
+    });
+  } */
 });
 
 app.use(errors());

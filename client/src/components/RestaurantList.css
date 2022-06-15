@@ -2,19 +2,35 @@
 }
 
 .restaurants {
+  list-style-type: none;
+  padding: 0.5rem;
 }
 
 .restaurantBody {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: white;
 }
 
 .restaurantImage {
 }
 
 .restaurantName {
+  margin-top: 0.2rem;
 }
 
 .restaurantDescription {
+  margin-top: 0.4rem;
 }
-
-.restaurantDetails {
+.link {
+  text-decoration: none;
+}
+.reserveNow {
+  background-color: red;
+  padding: 1rem;
+  margin: 1rem;
+  color: white;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  width: 40%;
 }
