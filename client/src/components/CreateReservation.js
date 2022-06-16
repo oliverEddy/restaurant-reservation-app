@@ -8,8 +8,6 @@ import "./CreateReservation.css";
 const CreateReservation = ({ restaurantName }) => {
   const [partySize, setPartySize] = useState("");
   const [date, setDate] = useState("");
-  // const [restaurantName, setRestaurantName] = useState("");
-  // const [published, setPublished] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorStatus, setErrorStatus] = useState("");
