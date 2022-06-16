@@ -51,7 +51,7 @@ app.post(
   checkJwt,
   celebrate({
     [Segments.BODY]: Joi.object().keys({
-      partySize: Joi.number().min(0).required(),
+      partySize: Joi.number().min(1).required(),
       date: Joi.date().min("now").required(),
       restaurantName: Joi.string().required(),
     }),
@@ -115,30 +115,6 @@ app.get("/reservations/:id", checkJwt, async (request, response, next) => {
     });
   }
 });
-
-/* app.get("/reservations/:id", checkJwt, async (request, response) => {
-  const { id } = request.params;
-  const { auth } = request;
-  const userId = auth.payload.sub;
-
-  if (validId) {
-    const reservation = await ReservationModel.findById(id);
-
-    if (reservation) {
-      if (reservation.userId === userId) {
-        return response.send(formatReservations(reservation));
-      } else {
-        return response.status(403).send({
-          error: "user does not have permission to access this reservation",
-        });
-      }
-    } else {
-      return response.status(404).send({ error: "not found" });
-    }
-  } else {
-    return response.status(400).send({ error: "invalid id provided" });
-  }
-}); */
 
 app.use(errors());
 module.exports = app;

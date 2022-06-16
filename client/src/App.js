@@ -38,6 +38,7 @@ const App = () => {
 };
 
 export default App;
+
 /* <Route path="/reservations" element={<ProtectedRoute />}>
             <Route path="/reservations/:id" element={<Reservation />} />
              <Route path="/reservations" element={<ReservationList />} />

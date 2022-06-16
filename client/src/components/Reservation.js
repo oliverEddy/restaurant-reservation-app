@@ -33,7 +33,7 @@ const Reservation = () => {
     };
 
     fetchData();
-  }, [id]);
+  }, [getAccessTokenSilently, id]);
 
   if (isNotFound) {
     return (
@@ -60,7 +60,7 @@ const Reservation = () => {
         </div>
       </div>
 
-      <Link className="backButton" to="/">
+      <Link className="backButton" to="/reservations">
         ←Back to reservation
       </Link>
     </>
