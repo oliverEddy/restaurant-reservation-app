@@ -142,6 +142,7 @@ describe("app", () => {
       expect(response.body).toEqual(expected);
     });
   });
+
   test("GET/reservations/:bad-id should return a status code of 404 reservation not found", async () => {
     const expected = {
       error: "not found",
@@ -152,5 +153,22 @@ describe("app", () => {
     expect((response) => {
       expect(response.body).toEqual(expected);
     });
+  });
+  it("should return a status code of 400 if required validation error happens on POST /reservations", async () => {
+    const reqBody = {};
+    const response = await request(app).post("/reservations").send(reqBody);
+
+    expect(response.status).toBe(400);
+  });
+
+  it("should return a status code of 400 if partySize is less than 0 on POST /reservations", async () => {
+    const reqBody = {
+      partySize: -4,
+      date: "2023-11-17T06:30:00.000Z",
+      restaurantName: "Island Grill",
+    };
+    const response = await request(app).post("/reservations").send(reqBody);
+
+    expect(response.status).toBe(400);
   });
 });
