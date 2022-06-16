@@ -35,7 +35,6 @@ const ReservationList = () => {
       </>
     );
   }
-
   return (
     <>
       <div className="reservationContainer">
