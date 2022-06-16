@@ -7,30 +7,39 @@ import { useAuth0 } from "@auth0/auth0-react";
 const ReservationList = () => {
   const { getAccessTokenSilently } = useAuth0();
   const [reservations, setReservations] = useState([]);
-
-  const fetchData = async () => {
-    const accessToken = await getAccessTokenSilently();
-    const response = await fetch(`http://localhost:5001/reservations`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    const data = await response.json();
-    setReservations(data);
-  };
   useEffect(() => {
+    const fetchData = async () => {
+      const accessToken = await getAccessTokenSilently();
+      const response = await fetch(`http://localhost:5001/reservations`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      const data = await response.json();
+      setReservations(data);
+    };
+
     fetchData();
-  }, []);
-  return (
-    <>
-      <div className="reservationContainer">
+  }, [getAccessTokenSilently]);
+
+  if (reservations.length === 0) {
+    return (
+      <>
         <h1 className="Header">Upcoming reservations</h1>
         <p>You don't have any reservations.</p>
         <Link to={"/"}>
           <p className="details">View the restaurants</p>
         </Link>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <div className="reservationContainer">
+        <h1 className="Header">Upcoming reservations</h1>
 
         <ul className="reservations">
           {reservations.map((reservation) => {

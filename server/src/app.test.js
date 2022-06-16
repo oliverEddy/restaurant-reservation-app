@@ -131,17 +131,17 @@ describe("app", () => {
         expect(response.body).toEqual(expected);
       });
   });
-  /* test("GET/reservation/:id should forbidden access when trying to get another users reservation and return a status of 403", async () => {
+  test("GET/reservation/:id should forbidden access when trying to get another users reservation and return a status of 403", async () => {
     const expected = {
       error: "user does not have permission to access this reservation",
     };
     await request(app)
-      .get("/reservations/62a7d8bf95be9ca5faedcfd5")
+      .get("/reservations/61679189b54f48aa6599a7fd")
       .expect(403);
     expect((response) => {
       expect(response.body).toEqual(expected);
     });
-  }); */
+  });
   test("GET/reservations/:bad-id should return a status code of 404 reservation not found", async () => {
     const expected = {
       error: "not found",

@@ -59,6 +59,7 @@ const CreateReservation = ({ restaurantName }) => {
           </label>
           <input
             className="inputForPartySize"
+            // min={1}
             id="partySize"
             type="text"
             value={partySize}
