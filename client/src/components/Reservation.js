@@ -39,6 +39,9 @@ const Reservation = () => {
     return (
       <>
         <p className="error">Sorry! We can't find that reservation</p>
+        <Link className="backButton" to="/reservations">
+          ←Back to reservation
+        </Link>
       </>
     );
   }

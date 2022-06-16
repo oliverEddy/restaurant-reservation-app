@@ -8,10 +8,18 @@
 }
 
 .restaurantName {
+  justify-self: start;
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
 }
 
 .restaurantDescription {
 }
 
 .CreateReservation {
+}
+.error {
+  color: red;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
 }

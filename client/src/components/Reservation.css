@@ -6,9 +6,9 @@
 .restaurantName {
   font-weight: bold;
   font-size: 1.25rem;
+  padding-left: 0rem;
 }
 .date {
-  color: #808080;
   margin: 1.5rem;
   margin-left: 0;
 }
