@@ -49,7 +49,7 @@
   .restaurantName {
     grid-column: 2/4;
     grid-row: 1/2;
-    /* padding-left: 1rem; */
+    padding-left: 1rem;
     margin-top: 0rem;
   }
   .restaurantDescription {
@@ -61,5 +61,8 @@
   }
   .link {
     grid-column: -2/-1;
+  }
+  .reserveNow {
+    margin-left: 1rem;
   }
 }

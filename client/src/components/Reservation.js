@@ -55,7 +55,9 @@ const Reservation = () => {
       <h1>Reservation</h1>
 
       <div className="reservation">
-        <h2 className="restaurantName">{reservation.restaurantName} </h2>
+        <h2 className="restaurantNameReservation">
+          {reservation.restaurantName}{" "}
+        </h2>
         <div className="date">{formatDate(reservation.date)}</div>
         <div className="">
           <span className="partySize">Party size: </span>

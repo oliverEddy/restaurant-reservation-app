@@ -24,7 +24,10 @@ const ReservationList = () => {
                 <div className="">
                   <div className="">{reservation.name}</div>
                   <div className="">{formatDate(reservation.date)}</div>
-                  <Link to={`/reservations/${reservation.id}`}>
+                  <Link
+                    className="linkus7"
+                    to={`/reservations/${reservation.id}`}
+                  >
                     <p className="details">Reserve now→</p>
                   </Link>
                 </div>

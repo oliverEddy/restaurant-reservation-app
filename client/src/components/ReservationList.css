@@ -12,12 +12,18 @@
   font-weight: bold;
   margin-top: 0.7rem;
 }
-.date {
+.dateForReservationList {
   margin-top: 0.3rem;
+  margin: 1.5rem;
+  margin-left: 0;
+  color: #808080;
 }
 .details {
   margin-top: 0.3rem;
   color: red;
+  text-decoration-color: red;
+}
+.linkForViewDetails {
   text-decoration-color: red;
 }
 
@@ -33,7 +39,7 @@
     margin-bottom: 2rem;
   }
 
-  .date {
+  .dateForReservationList {
     justify-self: center;
     margin-top: 1rem;
   }

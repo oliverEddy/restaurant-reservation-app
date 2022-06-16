@@ -46,9 +46,14 @@ const ReservationList = () => {
               <li key={reservation.id}>
                 <div className="reservationBody">
                   <div className="name">{reservation.restaurantName}</div>
-                  <div className="date">{formatDate(reservation.date)}</div>
+                  <div className="dateForReservationList">
+                    {formatDate(reservation.date)}
+                  </div>
                   <div className="link">
-                    <Link to={`/reservations/${reservation.id}`}>
+                    <Link
+                      className="linkForViewDetails"
+                      to={`/reservations/${reservation.id}`}
+                    >
                       <p className="details">View details→</p>
                     </Link>
                   </div>

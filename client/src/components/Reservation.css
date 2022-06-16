@@ -3,10 +3,10 @@
   padding-bottom: 2rem;
   border-bottom: 1px dashed #ccc;
 }
-.restaurantName {
+.restaurantNameReservation {
   font-weight: bold;
   font-size: 1.25rem;
-  padding-left: 0rem;
+  font-size: 1.35rem;
 }
 .date {
   margin: 1.5rem;
