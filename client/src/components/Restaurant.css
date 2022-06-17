@@ -1,12 +1,3 @@
-.restaurantContainer {
-}
-
-.restaurantBody {
-}
-
-.restaurantImage {
-}
-
 .restaurantName {
   justify-self: start;
   font-size: 1.35rem;
@@ -14,11 +5,6 @@
   font-weight: bold;
 }
 
-.restaurantDescription {
-}
-
-.CreateReservation {
-}
 .error {
   color: red;
   font-weight: 800;
