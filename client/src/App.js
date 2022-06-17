@@ -30,7 +30,6 @@ const App = () => {
             <Route path="/reservations" element={<ReservationList />} />
           </Route>
           <Route path="/" element={<RestaurantList />} />
-          <Route path="/reservations" element={<CreateReservation />} />
         </Routes>
       </div>
     </>
@@ -38,9 +37,3 @@ const App = () => {
 };
 
 export default App;
-
-/* <Route path="/reservations" element={<ProtectedRoute />}>
-            <Route path="/reservations/:id" element={<Reservation />} />
-             <Route path="/reservations" element={<ReservationList />} />
-              <Route path="/reservations" element={<CreateReservation />} />
-          </Route> */
