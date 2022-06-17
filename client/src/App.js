@@ -7,7 +7,6 @@ import Reservation from "./components/Reservation";
 import ReservationList from "./components/ReservationList";
 import RestaurantList from "./components/RestaurantList";
 import Restaurant from "./components/Restaurant";
-import CreateReservation from "./components/CreateReservation";
 
 const App = () => {
   const { isLoading } = useAuth0();
