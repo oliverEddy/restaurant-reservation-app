@@ -11,7 +11,9 @@ const Restaurant = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`http://localhost:5001/restaurants/${id}`);
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}//restaurants/${id}`
+      );
       if (response.ok === false) {
         setIsNotFound(true);
         return;
