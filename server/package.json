@@ -38,7 +38,8 @@
     "express": "^4.17.1",
     "express-oauth2-jwt-bearer": "^1.1.0",
     "mongoose": "^6.3.8",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "node": "^17.7.2"
   },
   "jest": {
     "setupFilesAfterEnv": [
