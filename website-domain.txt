@@ -1,4 +1,5 @@
 Add your deployed website domain's / URL's below
 
-React application URL / domain:
-API URL / domain:
+React application URL / domain: https://verdant-praline-8b1516.netlify.app
+API URL / domain: https://reservationizr-olle1134.herokuapp.com 
+
